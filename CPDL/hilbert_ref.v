@@ -1,10 +1,9 @@
 (* (c) Copyright Christian Doczkal and Joachim Bard                       *)
 (* Distributed under the terms of the CeCILL-B license                    *)
 Require Import Relations Omega.
-Require Import mathcomp.ssreflect.ssreflect.
 From mathcomp Require Import all_ssreflect.
-From libs Require Import edone bcase fset base modular_hilbert.
-Require Import PDL_def demo.
+From CDPDL Require Import edone bcase fset base modular_hilbert.
+From CDPDL Require Import CPDL.PDL_def CPDL.demo.
 
 Set Implicit Arguments.
 Unset Strict Implicit.

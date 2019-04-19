@@ -2,8 +2,8 @@
 (* Distributed under the terms of the CeCILL-B license                    *)
 Require Import Relations Omega Setoid Morphisms.
 From mathcomp Require Import all_ssreflect.
-From libs Require Import edone bcase fset fset_tac base modular_hilbert.
-Require Import rewrite_inequality.
+From CDPDL Require Import edone bcase fset fset_tac base modular_hilbert.
+From CDPDL Require Import CPDL.rewrite_inequality.
 
 (* add this globally in fset.v ? *)
 Hint Resolve subxx. 

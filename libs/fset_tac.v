@@ -1,6 +1,6 @@
 (** Author: Alexander Anisimov *)
 From mathcomp Require Import ssreflect ssrbool eqtype seq choice.
-From libs Require Import edone bcase base fset.
+From CDPDL Require Import edone bcase base fset.
 
 Set Implicit Arguments.
 (*Unset Strict Implicit.*)

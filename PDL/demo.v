@@ -1,10 +1,9 @@
 (* (c) Copyright Christian Doczkal and Joachim Bard                       *)
 (* Distributed under the terms of the CeCILL-B license                    *)
 Require Import Relations Classical_Pred_Type.
-Require Import mathcomp.ssreflect.ssreflect.
 From mathcomp Require Import all_ssreflect.
-From libs Require Import edone bcase fset base.
-Require Import PDL_def.
+From CDPDL Require Import edone bcase fset base.
+From CDPDL Require Import PDL.PDL_def.
 
 Set Implicit Arguments.
 Unset Strict Implicit.

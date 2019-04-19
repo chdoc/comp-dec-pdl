@@ -1,0 +1,22 @@
+-R . CDPDL
+
+-arg -w -arg -notation-overridden
+-arg -w -arg -projection-no-head-constant
+-arg -w -arg -redundant-canonical-projection
+
+libs/bcase.v
+libs/edone.v
+libs/base.v
+libs/fset.v
+libs/fset_tac.v
+libs/induced_sym.v
+libs/modular_hilbert.v
+libs/sltype.v
+PDL/PDL_def.v
+PDL/demo.v
+PDL/hilbert_ref.v
+PDL/rewrite_inequality.v
+CPDL/PDL_def.v
+CPDL/demo.v
+CPDL/hilbert_ref.v
+CPDL/rewrite_inequality.v

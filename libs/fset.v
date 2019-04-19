@@ -1090,11 +1090,13 @@ End Maximal.
 
 (** ** Pruning *)
 
+Require Recdef.
+
 Section Pruning.
   Variables (T:choiceType) (p : T -> {fset T} -> bool).
   Implicit Types (S : {fset T}).
 
-  Require Import Recdef.
+  Import Recdef.
 
   Function prune S {measure size} :=
     if fpick (p^~ S) S is Some x then prune (S `\` [fset x]) else S.
