@@ -135,7 +135,7 @@ Proof.
     case: (boolP (b == a)) => [/eqP->|_]; by rewrite ?mask_s // ?andbF.
 Qed.
 
-Implicit Arguments SeqSub [T s].
+Arguments SeqSub [T s].
 
 (** ** A least- and greatest fixpoints for finite types *)
 
