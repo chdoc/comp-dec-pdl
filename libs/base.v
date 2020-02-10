@@ -135,7 +135,7 @@ Proof.
     case: (boolP (b == a)) => [/eqP->|_]; by rewrite ?mask_s // ?andbF.
 Qed.
 
-Implicit Arguments SeqSub [T s].
+Arguments SeqSub [T s].
 
 (** ** A least- and greatest fixpoints for finite types *)
 
@@ -245,11 +245,11 @@ Section Dist.
   Lemma distP s t : enum_rank t = enum_rank s + dist s t %[mod #|{:T}|].
   Proof.
     apply/eqP.
-    by case : (xchooseP (ex_dist (enum_rank s) (enum_rank t) Tgt0)) => /andP [? ?].
+    by case/andP: (xchooseP (ex_dist (enum_rank s) (enum_rank t) Tgt0)).
   Qed.
 
   Lemma dist_ltn s t : dist s t < #|{:T}|.
-  Proof. by case : (xchooseP (ex_dist (enum_rank s) (enum_rank t) Tgt0)) => /andP [? ?]. Qed.
+  Proof. by case/andP: (xchooseP (ex_dist (enum_rank s) (enum_rank t) Tgt0)). Qed.
 
   Lemma dist0 (s t : T) : dist s t = 0 -> s = t.
   Proof.

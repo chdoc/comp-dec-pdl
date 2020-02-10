@@ -78,7 +78,7 @@ End SuppC.
 
 
 
-Arguments s_weight [form] : rename.
+Arguments s_weight {form} : rename.
 Arguments weight [form] C.
 
 Record slpType := SLPType { slp_form :> pSystem ; slp_class : slClass slp_form }.

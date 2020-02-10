@@ -1,5 +1,6 @@
 (* (c) Copyright Christian Doczkal, Saarland University                   *)
 (* Distributed under the terms of the CeCILL-B license                    *)
+Require Import Recdef.
 Require Import mathcomp.ssreflect.ssreflect.
 From mathcomp Require Import all_ssreflect.
 
@@ -94,7 +95,7 @@ Section FinSets.
 
   Canonical Structure fset_subType := [subType for elements by fset_type_rect].
   Canonical Structure fset_eqType := EqType _ [eqMixin of fset_type by <:].
-  Canonical Structure fset_predType := mkPredType (fun (X : fset_type) x => nosimpl x \in elements X).
+  Canonical Structure fset_predType := PredType (fun (X : fset_type) x => nosimpl x \in elements X).
   Canonical Structure fset_choiceType := Eval hnf in ChoiceType _ [choiceMixin of fset_type by <:].
 End FinSets.
 
@@ -411,7 +412,7 @@ Section OperationsTheory.
   Lemma fimset2P (rT : choiceType) f (y : rT) : 
     reflect (fimset2_spec f y) (y \in fimset2 f A B).
   Proof.
-    rewrite fimset2E set_ofE. apply: (iffP (allpairsP _ _ _ _)).
+    rewrite fimset2E set_ofE. apply: (iffP allpairsP).
     case => [[a b] /= [? ? ?]]. exact: fImset_spec.
     case => a b *. exists (a,b). by split.
   Qed.
@@ -455,7 +456,7 @@ Section OperationsTheory.
 
   Lemma subxx X : X `<=` X.
   Proof. exact/subP. Qed.
-  Hint Resolve subxx.
+  Hint Resolve subxx : core.
 
   Lemma sub_trans Y X Z : X `<=` Y -> Y `<=` Z -> X `<=` Z.
   Proof. move => /subP ? /subP ?. by apply/subP => x; eauto. Qed.
@@ -487,7 +488,7 @@ Section OperationsTheory.
   Lemma fsubDl X Y : X `\` Y `<=` X.
   Proof. apply/subP;move => x. by rewrite inE ; bcase. Qed.
 
-  Hint Resolve sub0x fset11 fsubUr fsubUl fsubDl.
+  Hint Resolve sub0x fset11 fsubUr fsubUl fsubDl : core.
 
   Lemma subsep X (P : pred T) : [fset x in X | P x] `<=` X.
   Proof. apply/subP => x. by rewrite inE; bcase. Qed.
@@ -635,8 +636,8 @@ Section OperationsTheory.
   Qed.
 
 End OperationsTheory.
-Hint Resolve sub0x fset11 fsubUr fsubUl fsubDl subsep.
-Arguments subP [T1 X Y].
+Hint Resolve sub0x fset11 fsubUr fsubUl fsubDl subsep : core.
+Arguments subP {T1 X Y}.
 Prenex Implicits subP.
 
 Section Fimset3.
@@ -1044,7 +1045,7 @@ Section FsetConnect.
     rewrite /connect_in.
     move => /existsP [a] /existsP [b] /and3P [/eqP ? /eqP ? ?] /existsP [?] /existsP [c] /and3P [/eqP H /eqP ? R].
     subst. apply/existsP; exists a. apply/existsP; exists c. rewrite !eqxx /=.
-    apply: connect_trans _ R. by rewrite (val_inj _ _ H).
+    apply: connect_trans _ R. by rewrite (val_inj H).
   Qed.
 
   Lemma connect_inP x y :
@@ -1093,8 +1094,6 @@ End Maximal.
 Section Pruning.
   Variables (T:choiceType) (p : T -> {fset T} -> bool).
   Implicit Types (S : {fset T}).
-
-  Require Import Recdef.
 
   Function prune S {measure size} :=
     if fpick (p^~ S) S is Some x then prune (S `\` [fset x]) else S.

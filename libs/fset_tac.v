@@ -269,7 +269,7 @@ Ltac genSubst :=
             | _: x = y |- _ => fail 1
             | _ => move: (eqP H) => V
           end
-        | x := _:_  |- _ => subst x
+        | x := _ |- _ => subst x
       end
     ); subst.
 
