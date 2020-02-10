@@ -6,7 +6,7 @@ From libs Require Import edone bcase fset fset_tac base modular_hilbert.
 Require Import rewrite_inequality.
 
 (* add this globally in fset.v ? *)
-Hint Resolve subxx. 
+Hint Resolve subxx : core.
 
 Lemma sizes1 (T : choiceType) (x : T) : size [fset x] = 1.
 Proof. by rewrite fset1Es. Qed.
@@ -408,7 +408,7 @@ End Hilbert.
     - move => p s M v /=. apply. by constructor.
     - move => p s M v H u vRu w uRw /=. apply: H. exact: StarL.
     - move => p u _ IHu M v H w /= vRw.
-      elim: vRw H => // {v w} v w ? vRu _ IH H. apply: IH. exact: IHu.
+      elim: vRw H => // {v w} - v w ? vRu _ IH H. apply: IH. exact: IHu.
     - by move => s t M v /= A w [->]. 
   Qed.
 
@@ -605,7 +605,7 @@ Ltac somega := try
                   omega).
 
 (** Make arguments implicit for easier passing to leqRW *)
-Arguments fsizeU [T X Y].
+Arguments fsizeU {T X Y}.
 
 (* Lemma 3.5 *)
 Lemma FL_size : 
@@ -959,8 +959,8 @@ Proof.
     + rewrite -> ax_Con,ax_conv_con,ax_Con. rewrite -> (H _).1 , (H0 _).1. exact: ax_eq_refl.
     + rewrite -> ax_Con, ax_Con, (H _).2, (H0 _).2. exact: ax_eq_refl.
   - split.
-    + rewrite -> ax_conv_star. apply: rStar_eq => {s} s. exact: (H s).1.
-    + apply: rStar_eq => {s} s. exact: (H s).2.
+    + rewrite -> ax_conv_star. apply: rStar_eq => {s} - s. exact: (H s).1.
+    + apply: rStar_eq => {s} - s. exact: (H s).2.
   - split.
     + rewrite -> ax_conv_test. do ! rewrite -> ax_test. rewrite -> H. exact: ax_eq_refl.
     + do ! rewrite -> ax_test. rewrite -> H. exact: ax_eq_refl.

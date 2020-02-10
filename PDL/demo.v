@@ -10,7 +10,7 @@ Set Implicit Arguments.
 Unset Strict Implicit.
 Import Prenex Implicits.
 
-Arguments subsep [T X P].
+Arguments subsep {T X P}.
 
 Implicit Types (S cls X Y : {fset clause}) (C D : clause).
 
@@ -40,7 +40,7 @@ Record demo := Demo {
 
 Arguments demoD1 [d C] _ [p s] _.
 
-Canonical demo_predType := mkPredType (fun (S : demo) (C : clause) => nosimpl C \in cls S).
+Canonical demo_predType := PredType (fun (S : demo) (C : clause) => nosimpl C \in cls S).
 
 Lemma LCF (S : demo) C : C \in S -> ((fF^+ \in C) = false) * (forall p, (fV p^+ \in C) && (fV p^- \in C) = false).
 Proof.
@@ -55,7 +55,7 @@ Section ModelExistience.
   Variables (S : demo).
 
   Definition Mtype := seq_sub S.
-  Definition Mtrans a : rel Mtype := restrict S (rtrans a).
+  Definition Mtrans a : rel Mtype := @restrict _ S (rtrans a).
   Definition Mlabel (x: var) (C : Mtype) := fV x^+ \in val C.
 
   Definition model_of := FModel Mtrans Mlabel.
@@ -81,7 +81,7 @@ Section ModelExistience.
       (apply: IH1 E2; last apply: IH0 E1 => //) => t e' ?; apply Ht; by somega.
     - move => /= A B. elim: B A => {c d} [c|c e d A _ IH B]; first by case/model_of_dc/andP.
       apply: IH. case/model_of_dc/andP : B => _ ?. apply: IHp A => //.
-      move => t {e} e A. apply: Ht. by somega.
+      move => t {e} - e A. apply: Ht. by somega.
     - case/model_of_dc/orP; last by move => ? [->]. 
       move => A [->] B. exfalso. apply: Ht A B. by somega.
   Qed.

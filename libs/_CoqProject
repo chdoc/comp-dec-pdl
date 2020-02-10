@@ -1,3 +1,4 @@
+-arg -w -arg -notation-overridden
 -R . libs
 bcase.v
 edone.v

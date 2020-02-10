@@ -6,7 +6,7 @@ From libs Require Import edone bcase fset base modular_hilbert sltype.
 Require Import rewrite_inequality fset_tac.
 
 (* should be made added globally in fset.v *)
-Hint Resolve subxx. 
+Hint Resolve subxx : core.
 
 Lemma sizes1 (T : choiceType) (x : T) : size [fset x] = 1.
 Proof. by rewrite fset1Es. Qed.
@@ -390,7 +390,7 @@ End Hilbert.
     - move => p s M v /=. apply. by constructor.
     - move => p s M v H u vRu w uRw /=. apply: H. exact: StarL.
     - move => p u _ IHu M v H w /= vRw.
-      elim: vRw H => // {v w} v w ? vRu _ IH H. apply: IH. exact: IHu.
+      elim: vRw H => // {v w} - v w ? vRu _ IH H. apply: IH. exact: IHu.
     - by move => s t M v /= A w [->]. 
   Qed.
 
@@ -578,7 +578,7 @@ Ltac somega := try
                   omega).
 
 (** Make arguments implicit for easier passing to leqRW *)
-Arguments fsizeU [T X Y].
+Arguments fsizeU {T X Y}.
 
 (* Lemma 3.5 *)
 Lemma FL_size : 
