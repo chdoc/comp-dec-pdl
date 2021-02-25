@@ -1,4 +1,10 @@
-Theory files accompanying the paper:
+## Note
+
+This repository is no longer maintained. The proofs have been moved to a [coq-community project](https://github.com/coq-community/comp-dec-modal) for long-term maintenance. 
+
+#  Completeness and Decidability of Converse PDL
+
+Web appendix accompanying the paper:
 
   Completeness and Decidability of Converse PDL 
      in the Constructive Type Theory of Coq
@@ -13,6 +19,3 @@ to the two developments will then be gernerated in
 
    website/[C]PDL/toc.html
 
-The documentation can also be browsed online at:
-
-  https://perso.ens-lyon.fr/christian.doczkal/cpp18/
